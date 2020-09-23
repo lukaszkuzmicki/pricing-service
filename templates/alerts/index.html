@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<header>
+    <h1>Alerts</h1>
+</header>
+
+<section>
+    <div class="list-group">
+        {% for alert in alerts %}
+            <div class="list-group-item">
+                <h4>Alert</h4>
+                <p>
+                    <a href="{{ alert.item.url }}">{{ alert.item.url }}</a>
+                </p>
+                <p>
+                    {{ alert.item._id }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+<!--    url_for('items.create_item' == naza blueprintu i potem nazwa metody -->
+    <a class="btn btn-primary mt-3" href="{{ url_for('alerts.new_alert') }}">
+        Create new alert
+    </a>
+</section>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header><h1>Create Alert</h1></header>
+    <section class="create-alert-form">
+        <form method="post" action="/">
+            <div class ="form-group">
+                <label for="item_id">URL</label>
+                <input type="text" class="form-control" id="item_id" name="item_id"/>
+            </div>
+            <div class ="form-group">
+                <label for="price_limit">Price limit</label>
+                <input type="text" class="form-control" id="price_limit" name="price_limit" placeholder="$"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Create alert</button>
+        </form>
+    </section>
+{% endblock %}
