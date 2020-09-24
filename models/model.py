@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 #jeżeli jest abcmeta to moze uzywac abstract method a metody abstrakcyjne musza byc zaimpelentowane w kazdej klasie
-from typing import List, TypeVar, Type, Dict
+from typing import List, TypeVar, Type, Dict, Union
 
 from common.database import Database
 
@@ -34,9 +34,9 @@ class Model(metaclass=ABCMeta):
         return [cls(**item) for item in items_from_db]
 
     @classmethod
-    def find_one_by(cls: Type[T], attribute: str, value: str) -> T:
+    def find_one_by(cls: Type[T], attribute: str, value: Union[str, Dict]) -> T:
         return cls(**Database.find_one(cls.collection, {attribute: value}))
 
     @classmethod
-    def find_many_by(cls: Type[T], attribute: str, value: str) -> List[T]:
+    def find_many_by(cls: Type[T], attribute: str, value: Union[str, Dict]) -> List[T]:
         return [cls(**elem) for elem in Database.find(cls.collection, {attribute: value})]
