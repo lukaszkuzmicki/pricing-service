@@ -15,10 +15,8 @@ class Item(Model):
     url: str
     tag_name: str
     query: Dict
+    price: float = field(default=None)
     _id: str = field(default_factory=lambda: uuid.uuid4().hex)
-
-    def __post_init__(self):
-        self.price = None
 
     def load_price(self) -> float:
         response = requests.get(self.url)
@@ -40,13 +38,14 @@ class Item(Model):
         return {
             "_id": self._id,
             "url": self.url,
+            "price":self.price,
             "tag_name": self.tag_name,
             "query": self.query
         }
 
-    @classmethod
-    def get_by_id(cls, _id: str) -> "Item":
-        return cls(**Database.find_one("items", {"_id": _id}))
+    # @classmethod
+    # def get_by_id(cls, _id: str) -> "Item":
+    #     return cls(**Database.find_one("items", {"_id": _id}))
 
 
 

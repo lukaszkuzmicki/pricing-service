@@ -21,7 +21,7 @@ class Model(metaclass=ABCMeta):
 
     @classmethod
     def get_by_id(cls: Type[T], _id: str) -> T:
-        return cls.find_one_by({"_id": _id})
+        return cls.find_one_by("_id", _id)
 
     #czyli każda klasa będzie musiala mięc meetode json
     @abstractmethod
@@ -34,7 +34,7 @@ class Model(metaclass=ABCMeta):
         return [cls(**item) for item in items_from_db]
 
     @classmethod
-    def find_one_by(cls: Type[T], attribute: str, value: Union[str, Dict]) -> T:
+    def find_one_by(cls: Type[T], attribute: str, value: str) -> T:
         return cls(**Database.find_one(cls.collection, {attribute: value}))
 
     @classmethod

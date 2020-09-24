@@ -5,13 +5,16 @@ from learning import learning_blueprint
 from models.item import Item
 
 from views.alerts import alert_blueprint
+from views.stores import store_blueprint
 
 app = Flask(__name__)
 
 # app.register_blueprint(learning_blueprint, url_prefix='/greetings')
 
 
-app.register_blueprint(alert_blueprint, url_prefix ='/alerts')
+app.register_blueprint(alert_blueprint, url_prefix= '/alerts')
+app.register_blueprint(user_blueprint, url_prefix= '/users')
+app.register_blueprint(store_blueprint, url_prefix= '/stores')
 
 
 
