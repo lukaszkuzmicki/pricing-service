@@ -1,28 +1,24 @@
 import re
 import uuid
 from typing import Dict
-
+from dataclasses import dataclass, field
 import requests
 from bs4 import BeautifulSoup
 
 from common.database import Database
 from models.model import Model
 
-
+@dataclass(eq=False)
 class Item(Model):
-    #wtedy możemy zrobić cls collection w model.py i będzie bardziej generyczna
-    collection = "items"
-    def __init__(self, url: str, tag_name: str, query: Dict, _id: str = None):
-        super().__init__()
-        self.url = url
-        self.tag_name = tag_name
-        self.query = query
-        self.price = None
-        self._id = _id or uuid.uuid4().hex
 
-    #for printing
-    def __repr__(self):
-        return f"<Item {self.url}>"
+    collection: str = field(init=False, default="items")
+    url: str
+    tag_name: str
+    query: Dict
+    _id: str = field(default_factory=lambda: uuid.uuid4().hex)
+
+    def __post_init__(self):
+        self.price = None
 
     def load_price(self) -> float:
         response = requests.get(self.url)
