@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 #jeżeli jest abcmeta to moze uzywac abstract method a metody abstrakcyjne musza byc zaimpelentowane w kazdej klasie
 from typing import List, TypeVar, Type, Dict, Union
 
-from common.database import Database
+from src.common.database import Database
 
 T = TypeVar('T', bound='Model')
 

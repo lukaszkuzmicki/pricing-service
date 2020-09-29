@@ -5,8 +5,7 @@ from dataclasses import dataclass, field
 import requests
 from bs4 import BeautifulSoup
 
-from common.database import Database
-from models.model import Model
+from src.models.model import Model
 
 @dataclass(eq=False)
 class Item(Model):

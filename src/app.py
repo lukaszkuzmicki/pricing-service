@@ -1,22 +1,17 @@
-import json
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask.cli import load_dotenv
 
-from learning import learning_blueprint
-from libs.mailgun import Mailgun
-from models.item import Item
-
-from views.alerts import alert_blueprint
-from views.stores import store_blueprint
-from views.users import user_blueprint
+from src.views.alerts import alert_blueprint
+from src.views.stores import store_blueprint
+from src.views.users import user_blueprint
 
 app = Flask(__name__)
 app.secret_key = 'asddddddddddddddddddddddddddddd'
 
 # to pobieramy z confidu ktory we flasku = .env
-load_dotenv('.env')
+load_dotenv('../.env')
 app.config.update(
     ADMIN=os.environ.get('ADMIN')
 )

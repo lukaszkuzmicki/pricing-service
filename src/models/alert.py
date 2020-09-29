@@ -1,11 +1,10 @@
 from dataclasses import dataclass, field
-from typing import List, Dict
+from typing import Dict
 import uuid
-from common.database import Database
-from libs.mailgun import Mailgun
-from models.item import Item
-from models.model import Model
-from models.user import User
+from src.libs.mailgun import Mailgun
+from src.models.item import Item
+from src.models.model import Model
+from src.models.user.user import User
 
 
 @dataclass(eq=False)

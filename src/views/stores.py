@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 import json
-from models.store import Store
-from models.user.decorators import requires_admin, requires_login
+from src.models.store import Store
+from src.models.user.decorators import requires_admin, requires_login
 
 store_blueprint= Blueprint('stores', __name__)
 
