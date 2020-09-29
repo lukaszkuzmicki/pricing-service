@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content%}
+    <div class="jumbotron">
+        <h1 class="display-4">Pricing Service</h1>
+        <p class="lead">Alert price drops</p>
+        <hr class="my-4"/>
+        <p> You can sign in with eaase! Just provide the URL and we will notify you ...</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}"> Get started</a>
+    </div>
+
+{% endblock%}

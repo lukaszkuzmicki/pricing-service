@@ -1,4 +1,5 @@
-from flask import Blueprint, request, render_template, session
+from flask import Blueprint, request, render_template, session, redirect
+
 
 from models.user import User, UserErrors
 
@@ -37,6 +38,11 @@ def login_user():
 
 
 
+    return render_template('users/login.html')
+
+@user_blueprint.route('logout')
+def logout():
+    session['email'] = None
     return render_template('users/login.html')
 
 

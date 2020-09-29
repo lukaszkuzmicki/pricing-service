@@ -19,16 +19,20 @@ class Item(Model):
     _id: str = field(default_factory=lambda: uuid.uuid4().hex)
 
     def load_price(self) -> float:
-        response = requests.get(self.url)
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
+        response = requests.get(self.url, headers=headers)
+
         content = response.content
 
         soup = BeautifulSoup(content, 'html.parser')
         element = soup.find(self.tag_name, self.query)
-        string_price = element.text.strip()
+        # for zalando and PLN currency
+        string_price = element.text.strip().replace(',', '.')
 
         # number + optional comma + any numbers . two numbers
-        pattern = re.compile(r"(\d+,?\d*\.\d\d)")  # 14.34
+        pattern = re.compile(r"(\d+,?\d*\.?,?\d\d)")  # 14.34
         match = pattern.search(string_price)
+
         found_price = match.group(1)
         without_commas = found_price.replace(',', '')
         self.price = float(without_commas)

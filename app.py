@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 from flask.cli import load_dotenv
 
 from learning import learning_blueprint
+from libs.mailgun import Mailgun
 from models.item import Item
 
 from views.alerts import alert_blueprint
@@ -20,7 +21,12 @@ app.config.update(
     ADMIN=os.environ.get('ADMIN')
 )
 
+
 # app.register_blueprint(learning_blueprint, url_prefix='/greetings')
+
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 
 app.register_blueprint(alert_blueprint, url_prefix='/alerts')
