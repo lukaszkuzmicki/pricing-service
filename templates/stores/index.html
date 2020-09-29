@@ -16,17 +16,26 @@
                 </p>
                 <p>Store ID: {{ store._id }}</p>
 
-                <a class="btn btn-secondary"  href="{{url_for('stores.edit_store', store_id = store._id) }} "> Edit</a>
-            </div>
+<!--                <p>{{ session['email'] }} </p>-->
+<!--                <p>{{ config.ADMIN }} </p>-->
+
+                {% if session['email'] == config.ADMIN %}
+                <a class="btn btn-secondary"  href="{{url_for('stores.edit_store', store_id = store._id) }} ">
+                    Edit
+                </a>
                 <a class="btn btn-danger" href="{{url_for('stores.delete_store', store_id = store._id) }} ">
                     Delete
                 </a>
+                {% endif %}
         {% endfor %}
     </div>
 <!--    url_for('items.create_item' == naza blueprintu i potem nazwa metody -->
+
+    {% if session['email'] == config.ADMIN %}
     <a class="btn btn-primary mt-3" href="{{ url_for('stores.create_store') }}">
         Create new
     </a>
+    {% endif %}
 </section>
 
 {% endblock %}

@@ -1,23 +1,31 @@
 import json
+import os
 
 from flask import Flask, render_template, request
+from flask.cli import load_dotenv
+
 from learning import learning_blueprint
 from models.item import Item
 
 from views.alerts import alert_blueprint
 from views.stores import store_blueprint
+from views.users import user_blueprint
 
 app = Flask(__name__)
+app.secret_key = 'asddddddddddddddddddddddddddddd'
+
+# to pobieramy z confidu ktory we flasku = .env
+load_dotenv('.env')
+app.config.update(
+    ADMIN=os.environ.get('ADMIN')
+)
 
 # app.register_blueprint(learning_blueprint, url_prefix='/greetings')
 
 
-app.register_blueprint(alert_blueprint, url_prefix= '/alerts')
-app.register_blueprint(user_blueprint, url_prefix= '/users')
-app.register_blueprint(store_blueprint, url_prefix= '/stores')
-
-
-
+app.register_blueprint(alert_blueprint, url_prefix='/alerts')
+app.register_blueprint(user_blueprint, url_prefix='/users')
+app.register_blueprint(store_blueprint, url_prefix='/stores')
 
 if __name__ == '__main__':
     app.run()
@@ -43,7 +51,3 @@ if __name__ == '__main__':
 #
 # alert = Alert("2a002b09a1144c96a8003d91991433aa",2000)
 # alert.save_to_mongo()
-
-
-
-
