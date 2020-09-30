@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, session
 
-from src.models.user.user import User, UserErrors
+from models.user.user import User, UserErrors
 
 user_blueprint = Blueprint('users', __name__)
 

@@ -2,9 +2,9 @@ import uuid
 from dataclasses import field, dataclass
 from typing import Dict
 
-from src.common.utils import Utils
-from src.models.model import Model
-import src.models.user.errors as UserErrors
+from common.utils import Utils
+from models.model import Model
+import models.user.errors as UserErrors
 
 
 @dataclass

@@ -1,4 +1,4 @@
-from src.models import Alert
+from models import Alert
 
 alerts = Alert.all()
 print(alerts)
